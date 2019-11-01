@@ -1,5 +1,9 @@
 package dev;
 
+import java.util.Arrays;
+import java.util.List;
+
+
 public class MarsRover {
 
 	public static final char NORTH='N';
@@ -10,14 +14,21 @@ public class MarsRover {
 	public static final char BACKWARD='b';
 	public static final char LEFT='l';
 	public static final char RIGHT='r';
+
+	
 	
 	private Point actualPosition;
-	private char direction;
-	
+	private RoverState state;
+	private static final List<RoverState> states = Arrays.asList(
+			new NorthState(),
+			new SouthState(),
+			new WestState(),
+			new EastState());
+
 	public MarsRover(int x, int y, char direction) {
 		// TODO Auto-generated constructor stub
 		actualPosition = new Point(x,y);
-		this.direction=direction;
+		changeDirection(direction);
 	}
 
 
@@ -25,78 +36,45 @@ public class MarsRover {
 		// TODO Auto-generated method stub
 		return actualPosition;
 	}
+	
+	protected void advanceInX() {
+		actualPosition = new Point(actualPosition.getX()+1, actualPosition.getY());
+	}
+	
+	protected void regressInX() {
+		actualPosition = new Point(actualPosition.getX()-1, actualPosition.getY());
+	}
+	
+	protected void advanceInY() {
+		actualPosition = new Point(actualPosition.getX(), actualPosition.getY()+1);
+	}
+	
+	protected void regressInY() {
+		actualPosition = new Point(actualPosition.getX(), actualPosition.getY()-1);
+	}
 
+	protected void changeDirection(char cardinal) {
+		state=states.stream().filter(s -> s.checkCardinalPoint(cardinal)).findFirst().get();
+	}
 
 	public void move(String instructions) {
 		// TODO Auto-generated method stub
 		instructions=instructions.toLowerCase();		
 		for (int i=0; i<instructions.length(); i++) {			
 			switch (instructions.charAt(i)) {
-			case 'f':
-				switch (direction) {
-				case NORTH:
-					actualPosition.increaseY();
-					break;
-				case EAST:
-					actualPosition.increaseX();
-					break;
-				case WEST:
-					actualPosition.decrementX();
-					break;
-				case SOUTH:
-					actualPosition.decrementY();
-					break;
-				}
+			case FORWARD:
+				state.moveForward(this);
 				break;
 			
 			case BACKWARD:
-				switch (direction) {
-				case SOUTH:
-					actualPosition.increaseY();
-					break;
-				case WEST:
-					actualPosition.increaseX();
-					break;
-				case EAST:
-					actualPosition.decrementX();
-					break;
-				case NORTH:
-					actualPosition.decrementY();
-					break;
-				}
+				state.moveBackward(this);
 				break;
 			
 			case LEFT:
-				switch (direction) {
-				case SOUTH:
-					direction = EAST;
-					break;
-				case WEST:
-					direction = SOUTH;
-					break;
-				case EAST:
-					direction = NORTH;
-					break;
-				case NORTH:
-					direction = WEST;
-					break;
-				}
+				state.turnLeft(this);
 				break;
 			case RIGHT:
-				switch (direction) {
-				case SOUTH:
-					direction = WEST;
-					break;
-				case WEST:
-					direction = NORTH;
-					break;
-				case EAST:
-					direction = SOUTH;
-					break;
-				case NORTH:
-					direction = EAST;
-					break;
-				}
+				state.turnRight(this);
 				break;
 			}
 		}
@@ -105,7 +83,7 @@ public class MarsRover {
 
 	public char getDirection() {
 		// TODO Auto-generated method stub
-		return direction;
+		return state.getCardinalPoint();
 	}
 	
 	

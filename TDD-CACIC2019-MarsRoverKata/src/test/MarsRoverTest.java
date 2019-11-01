@@ -113,5 +113,19 @@ class MarsRoverTest {
 		assertEquals(rover.getPosition(), new Point(2, 0));
 		rover.move(new String("ff"));
 		assertEquals(rover.getDirection(), MarsRover.WEST);
+		assertEquals(rover.getPosition(), new Point(0, 0));
 	}
+	
+	@Test
+	void test013MoveTwoInForwardToEastAndFullAroundAndBackward() {
+		Point pos = new Point (0,0);
+		MarsRover rover = new MarsRover(pos.getX(), pos.getY(),MarsRover.EAST);
+		rover.move(new String("ffrrrr"));
+		assertEquals(rover.getPosition(), new Point(2, 0));
+		rover.move(new String("bb"));
+		assertEquals(rover.getDirection(), MarsRover.EAST);
+		assertEquals(rover.getPosition(), new Point(0, 0));
+	}
+	
+	
 }

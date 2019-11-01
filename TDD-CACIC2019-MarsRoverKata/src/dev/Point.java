@@ -42,19 +42,4 @@ public class Point {
 		return true;
 	}
 	
-	public void increaseX() {
-		this.x++;
-	}
-	
-	public void decrementX() {
-		this.x--;
-	}
-	
-	public void increaseY() {
-		this.y++;
-	}
-	
-	public void decrementY() {
-		this.y--;
-	}
 }
