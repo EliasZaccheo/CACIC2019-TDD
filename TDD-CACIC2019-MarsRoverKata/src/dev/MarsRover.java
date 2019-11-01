@@ -14,6 +14,7 @@ public class MarsRover {
 	public static final char BACKWARD='b';
 	public static final char LEFT='l';
 	public static final char RIGHT='r';
+	public static final String UKNOWN_COMMAND="Comando desconocido";
 
 	
 	

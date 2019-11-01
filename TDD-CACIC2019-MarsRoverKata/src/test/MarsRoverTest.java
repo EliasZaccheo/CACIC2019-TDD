@@ -9,7 +9,7 @@ import dev.Point;
 class MarsRoverTest {
 
 	@Test
-	void test001Marcianizate() {
+	void test001Posicionate() {
 		Point pos = new Point (0,0);
 		MarsRover rover = new MarsRover(pos.getX(), pos.getY(),MarsRover.NORTH);
 		assertEquals(rover.getPosition(),pos);
@@ -127,5 +127,18 @@ class MarsRoverTest {
 		assertEquals(rover.getPosition(), new Point(0, 0));
 	}
 	
+	@Test
+	void test014SendUppercaseCommand() {
+		Point pos = new Point (0,0);
+		MarsRover rover = new MarsRover(pos.getX(), pos.getY(),MarsRover.EAST);
+		rover.move(new String("FF"));
+		assertEquals(rover.getPosition(), new Point(2, 0));
+		rover.move(new String("BB"));
+		assertEquals(rover.getPosition(), new Point(0, 0));
+		rover.move(new String("LL"));
+		assertEquals(rover.getDirection(), MarsRover.WEST);
+		rover.move(new String("R"));
+		assertEquals(rover.getDirection(), MarsRover.NORTH);
+	}
 	
 }
