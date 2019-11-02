@@ -2,7 +2,6 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import dev.MarsRover;
@@ -144,8 +143,6 @@ class MarsRoverTest {
 	}
 	
 	@Test
-	/* Cuando lee un caracter que no es comando, detiene la ejecución
-	 * */
 	void test015SendNotCommand() {
 		Point pos = new Point (0,0);
 		MarsRover rover = new MarsRover(pos.getX(), pos.getY(),MarsRover.EAST);
@@ -154,22 +151,20 @@ class MarsRoverTest {
 			fail(); 	// Para garantizar que el test falle si no se levanta la excepci�n por la colaboraci�n
 		}
 		catch (RuntimeException ex){
-			assertEquals(MarsRover.UKNOWN_COMMAND, ex.getMessage());
+			assertEquals(MarsRover.UNKNOWN_COMMAND, ex.getMessage());
 		}
 		assertEquals(rover.getPosition(), new Point(2, 0));
 	}
 	
 	@Test
-	/* Cuando lee un caracter que no es comando, detiene la ejecución
-	 * */
-	void test016InitializeWhitBadCardinalPoint() {
+	void test016InitializeWhitNotCardinalPoint() {
 		Point pos = new Point (0,0);		
 		try{
 			MarsRover rover = new MarsRover(pos.getX(), pos.getY(),'J');
 			fail(); 	// Para garantizar que el test falle si no se levanta la excepci�n por la colaboraci�n
 		}
 		catch (RuntimeException ex){
-			assertEquals(MarsRover.UKNOWN_PARAMETER, ex.getMessage());
+			assertEquals(MarsRover.UNKNOWN_PARAMETER, ex.getMessage());
 		}		
 	}
 }

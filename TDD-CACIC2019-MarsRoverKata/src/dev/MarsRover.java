@@ -16,8 +16,8 @@ public class MarsRover {
 	public static final char BACKWARD='b';
 	public static final char LEFT='l';
 	public static final char RIGHT='r';
-	public static final String UKNOWN_COMMAND="Comando desconocido";
-	public static final String UKNOWN_PARAMETER="Parametro de inicio desconocido. Dirección actual: Norte";
+	public static final String UNKNOWN_COMMAND="Comando desconocido";
+	public static final String UNKNOWN_PARAMETER="Parametro de inicio desconocido. Dirección actual: Norte";
 
 	
 	private Map<Character, CommandInterpreter> interpreters;
@@ -64,38 +64,10 @@ public class MarsRover {
 		}
 		catch (RuntimeException ex) {
 			state=states.stream().filter(s -> s.checkCardinalPoint(MarsRover.NORTH)).findFirst().get();
-			throw new RuntimeException(MarsRover.UKNOWN_PARAMETER);
+			throw new RuntimeException(MarsRover.UNKNOWN_PARAMETER);
 			
 		}
 	}
-
-	/*
-	 * public void move(String instructions) {
-	
-		// TODO Auto-generated method stub
-		instructions=instructions.toLowerCase();
-		
-		for (int i=0; i<instructions.length(); i++) {
-			switch (instructions.charAt(i)) {
-			case FORWARD:
-				state.moveForward(this);
-				break;
-			case BACKWARD:
-				state.moveBackward(this);
-				break;
-			case LEFT:
-				state.turnLeft(this);
-				break;
-			case RIGHT:
-				state.turnRight(this);
-				break;
-			default:
-				throw new RuntimeException(this.UKNOWN_COMMAND);
-			}
-		}
-	}
-	 */
-
 
 	public char getDirection() {
 		// TODO Auto-generated method stub
@@ -118,11 +90,10 @@ public class MarsRover {
 	
 	public void move(String instructions) {
 		// TODO Auto-generated method stub
-		instructions=instructions.toLowerCase();	// Aseguramos que sean minúsculas
-		instructions.chars().mapToObj(k->(char)k).forEach(i-> {		// Convertimos el string en un stream de caracteres
+		instructions.toLowerCase().chars().mapToObj(command->(char)command).forEach(i-> {		// Convertimos el string en un stream de caracteres (en minúscula)
 			CommandInterpreter interpreter = interpreters.get(i);	// Capturamos el interprete correcto para ese comando
 		    if (interpreter == null) {		// Si no existe un intérprete designado para ese comando
-		    	throw new RuntimeException(MarsRover.UKNOWN_COMMAND);
+		    	throw new RuntimeException(MarsRover.UNKNOWN_COMMAND);
 		    }
 		    interpreter.processCommand(this);	// Interpretamos el comando
 		});
