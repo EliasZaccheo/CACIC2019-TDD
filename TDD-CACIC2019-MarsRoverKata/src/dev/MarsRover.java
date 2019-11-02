@@ -15,6 +15,7 @@ public class MarsRover {
 	public static final char LEFT='l';
 	public static final char RIGHT='r';
 	public static final String UKNOWN_COMMAND="Comando desconocido";
+	public static final String UKNOWN_PARAMETER="Parametro de inicio desconocido";
 
 	
 	
@@ -61,22 +62,22 @@ public class MarsRover {
 	public void move(String instructions) {
 		// TODO Auto-generated method stub
 		instructions=instructions.toLowerCase();		
-		for (int i=0; i<instructions.length(); i++) {			
+		for (int i=0; i<instructions.length(); i++) {
 			switch (instructions.charAt(i)) {
 			case FORWARD:
 				state.moveForward(this);
 				break;
-			
 			case BACKWARD:
 				state.moveBackward(this);
 				break;
-			
 			case LEFT:
 				state.turnLeft(this);
 				break;
 			case RIGHT:
 				state.turnRight(this);
 				break;
+			default:
+				throw new RuntimeException(this.UKNOWN_COMMAND);
 			}
 		}
 	}
