@@ -1,6 +1,7 @@
 package dev;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -97,5 +98,12 @@ public class MarsRover {
 		    }
 		    interpreter.processCommand(this);	// Interpretamos el comando
 		});
+	}
+	
+	public void move(Collection<Character> instructions) {
+		// TODO Auto-generated method stub
+		StringBuilder conversor = new StringBuilder();
+		instructions.stream().forEach(character -> conversor.append(character));
+		move(conversor.toString());
 	}
 }

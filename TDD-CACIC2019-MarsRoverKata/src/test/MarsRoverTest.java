@@ -2,6 +2,10 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.junit.jupiter.api.Test;
 
 import dev.MarsRover;
@@ -166,5 +170,23 @@ class MarsRoverTest {
 		catch (RuntimeException ex){
 			assertEquals(MarsRover.UNKNOWN_PARAMETER, ex.getMessage());
 		}		
+	}
+	
+	@Test
+	void test017ReceiveACollectionOfCommands() {
+		Point pos = new Point (0,0);
+		MarsRover rover = new MarsRover(pos.getX(), pos.getY(),MarsRover.EAST);
+		Collection<Character> collection=new ArrayList<Character>();
+		collection.add('f');
+		collection.add('f');
+		collection.add('M');
+		try{
+			rover.move(collection);
+			fail(); 	// Para garantizar que el test falle si no se levanta la excepci�n por la colaboraci�n
+		}
+		catch (RuntimeException ex){
+			assertEquals(MarsRover.UNKNOWN_COMMAND, ex.getMessage());
+		}
+		assertEquals(rover.getPosition(), new Point(2, 0));
 	}
 }
