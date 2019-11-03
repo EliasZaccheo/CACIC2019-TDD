@@ -59,9 +59,10 @@ public class MarsRover {
 		actualPosition = new Point(actualPosition.getX(), actualPosition.getY()-1);
 	}
 
-	protected void changeDirection(char cardinal) {
+	protected void changeDirection(Character cardinal) {
+		char apoint = Character.toUpperCase(cardinal);
 		try{
-			state=states.stream().filter(s -> s.checkCardinalPoint(cardinal)).findFirst().get();
+			state=states.stream().filter(s -> s.checkCardinalPoint(apoint)).findFirst().get();
 		}
 		catch (RuntimeException ex) {
 			state=states.stream().filter(s -> s.checkCardinalPoint(MarsRover.NORTH)).findFirst().get();

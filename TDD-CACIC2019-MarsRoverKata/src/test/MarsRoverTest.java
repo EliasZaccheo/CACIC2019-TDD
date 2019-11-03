@@ -2,26 +2,23 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-
 import java.util.ArrayList;
 import java.util.Collection;
-
 import org.junit.jupiter.api.Test;
-
 import dev.MarsRover;
 import dev.Point;
 
 class MarsRoverTest {
 
 	@Test
-	void test001Posicionate() {
+	void testWhenInitializeWhitCorrectlyParametersShouldBePositionedCorrectly() {
 		Point pos = new Point (0,0);
 		MarsRover rover = new MarsRover(pos.getX(), pos.getY(),MarsRover.NORTH);
 		assertEquals(rover.getPosition(),pos);
 	}
 	
 	@Test
-	void test002MoveTwoInForwardWhenRoverIsOrientedToNorth() {
+	void testWhenIsPositionatedToNorthThenMoveTwoPositionsInForwardShouldBeInTwoPositionsToNorth() {
 		Point pos = new Point (0,0);
 		MarsRover rover = new MarsRover(pos.getX(), pos.getY(),MarsRover.NORTH);
 		rover.move(new String("ff"));
@@ -30,7 +27,7 @@ class MarsRoverTest {
 	}
 	
 	@Test
-	void test003MoveTwoInBackwardWhenRoverIsOrientedToNorth() {
+	void testWhenIsPositionatedToNorthThenMoveTwoPositionsInBackwardShouldBeInTwoPositionsToSouth() {
 		Point pos = new Point (0,0);
 		MarsRover rover = new MarsRover(pos.getX(), pos.getY(),MarsRover.NORTH);
 		rover.move(new String("bb"));
@@ -39,7 +36,7 @@ class MarsRoverTest {
 	}
 	
 	@Test
-	void test004MoveTwoInBackwardWhenRoverIsOrientedToSouth() {
+	void testWhenIsPositionatedToSouthThenMoveTwoPositionsInBackwardShouldBeInTwoPositionsToNorth() {
 		Point pos = new Point (0,0);
 		MarsRover rover = new MarsRover(pos.getX(), pos.getY(),MarsRover.SOUTH);
 		rover.move(new String("bb"));
@@ -48,7 +45,7 @@ class MarsRoverTest {
 	}
 	
 	@Test
-	void test005MoveTwoInForwardWhenRoverIsOrientedToSouth() {
+	void testWhenIsPositionatedToSouthThenMoveTwoPositionsInForwardShouldBeInTwoPositionsToSouth() {
 		Point pos = new Point (0,0);
 		MarsRover rover = new MarsRover(pos.getX(), pos.getY(),MarsRover.SOUTH);
 		rover.move(new String("ff"));
@@ -57,7 +54,7 @@ class MarsRoverTest {
 	}
 	
 	@Test
-	void test006MoveTwoInBackwardWhenRoverIsOrientedToWest() {
+	void testWhenIsPositionatedToWestThenMoveTwoPositionsInBackwardShouldBeInTwoPositionsToEast() {
 		Point pos = new Point (0,0);
 		MarsRover rover = new MarsRover(pos.getX(), pos.getY(),MarsRover.WEST);
 		rover.move(new String("bb"));
@@ -66,7 +63,7 @@ class MarsRoverTest {
 	}
 	
 	@Test
-	void test007MoveTwoInForwardWhenRoverIsOrientedToWest() {
+	void testWhenIsPositionatedToWestThenMoveTwoPositionsInForwardShouldBeInTwoPositionsToWest() {
 		Point pos = new Point (0,0);
 		MarsRover rover = new MarsRover(pos.getX(), pos.getY(),MarsRover.WEST);
 		rover.move(new String("ff"));
@@ -75,7 +72,7 @@ class MarsRoverTest {
 	}
 	
 	@Test
-	void test008MoveTwoInBackwardWhenRoverIsOrientedToEast() {
+	void testWhenIsPositionatedToEastThenMoveTwoPositionsInBackwardShouldBeInTwoPositionsToWest() {
 		Point pos = new Point (0,0);
 		MarsRover rover = new MarsRover(pos.getX(), pos.getY(),MarsRover.EAST);
 		rover.move(new String("bb"));
@@ -84,7 +81,7 @@ class MarsRoverTest {
 	}
 	
 	@Test
-	void test009MoveTwoInForwardWhenRoverIsOrientedToEast() {
+	void testWhenIsPositionatedToEastThenMoveTwoPositionsInForwardShouldBeInTwoPositionsToEast() {
 		Point pos = new Point (0,0);
 		MarsRover rover = new MarsRover(pos.getX(), pos.getY(),MarsRover.EAST);
 		rover.move(new String("ff"));
@@ -93,7 +90,7 @@ class MarsRoverTest {
 	}
 	
 	@Test
-	void test010TurnLeft() {
+	void testWhenIsPositionatedToNorthThenTurnToLeftShouldPositionatedToWest() {
 		Point pos = new Point (0,0);
 		MarsRover rover = new MarsRover(pos.getX(), pos.getY(),MarsRover.NORTH);
 		rover.move(new String("l"));
@@ -101,7 +98,7 @@ class MarsRoverTest {
 	}
 	
 	@Test
-	void test011MoveTwoInForwardToEastAndTurnLeft() {
+	void testWhenIsPositionatedToEastThenMoveTwoPositionsForwardAndTurnToLeftShouldBePositionatedToNorthInTwoPositionsEast() {
 		Point pos = new Point (0,0);
 		MarsRover rover = new MarsRover(pos.getX(), pos.getY(),MarsRover.EAST);
 		rover.move(new String("ffl"));
@@ -111,7 +108,7 @@ class MarsRoverTest {
 	}
 	
 	@Test
-	void test012MoveTwoInForwardToEastAndTurnAroundAndBackward() {
+	void testWhenIsPositionatedToEastThenMoveTwoPositionsForwardTurnTwiceToLeftAndMoveTwoPositionsForwardShouldBePositionatedToWestInOriginalPosition() {
 		Point pos = new Point (0,0);
 		MarsRover rover = new MarsRover(pos.getX(), pos.getY(),MarsRover.EAST);
 		rover.move(new String("ffll"));
@@ -122,7 +119,7 @@ class MarsRoverTest {
 	}
 	
 	@Test
-	void test013MoveTwoInForwardToEastAndFullAroundAndBackward() {
+	void testWhenIsPositionatedToEastThenMoveTwoPositionsForwardTurnFourEvenToRightAndMoveTwoPositionsBackwardShouldBePositionatedToEastInOriginalPosition() {
 		Point pos = new Point (0,0);
 		MarsRover rover = new MarsRover(pos.getX(), pos.getY(),MarsRover.EAST);
 		rover.move(new String("ffrrrr"));
@@ -133,7 +130,7 @@ class MarsRoverTest {
 	}
 	
 	@Test
-	void test014SendUppercaseCommand() {
+	void testWhenIsPositionatedThenSendUppercaseCommandShouldBeMoveCorrectly() {
 		Point pos = new Point (0,0);
 		MarsRover rover = new MarsRover(pos.getX(), pos.getY(),MarsRover.EAST);
 		rover.move(new String("FF"));
@@ -147,7 +144,7 @@ class MarsRoverTest {
 	}
 	
 	@Test
-	void test015SendNotCommand() {
+	void testWhenIsPositionatedThenSendNotACommandShouldThrowAnException() {
 		Point pos = new Point (0,0);
 		MarsRover rover = new MarsRover(pos.getX(), pos.getY(),MarsRover.EAST);
 		try{
@@ -159,12 +156,12 @@ class MarsRoverTest {
 		}
 		assertEquals(rover.getPosition(), new Point(2, 0));
 	}
-	
+		
 	@Test
-	void test016InitializeWhitNotCardinalPoint() {
+	void testWhenInitializeWithWrongParameterShouldThrowAnException() {
 		Point pos = new Point (0,0);		
 		try{
-			MarsRover rover = new MarsRover(pos.getX(), pos.getY(),'J');
+			new MarsRover(pos.getX(), pos.getY(),'J');
 			fail(); 	// Para garantizar que el test falle si no se levanta la excepci�n por la colaboraci�n
 		}
 		catch (RuntimeException ex){
@@ -173,7 +170,20 @@ class MarsRoverTest {
 	}
 	
 	@Test
-	void test017ReceiveACollectionOfCommands() {
+	void testWhenIsPositionatedThenSendCollectionOfCommandsShouldBeMoveCorrectly() {
+		Point pos = new Point (0,0);
+		MarsRover rover = new MarsRover(pos.getX(), pos.getY(),MarsRover.EAST);
+		Collection<Character> collection=new ArrayList<Character>();
+		collection.add('f');
+		collection.add('f');
+		collection.add('L');
+		rover.move(collection);
+		assertEquals(rover.getPosition(), new Point(2, 0));
+		assertEquals(rover.getDirection(), MarsRover.NORTH);
+	}
+	
+	@Test
+	void testWhenIsPositionatedThenSendCollectionOfCommandsAndNotACommandShouldBeMoveCorrectlyAndThrowAnException() {
 		Point pos = new Point (0,0);
 		MarsRover rover = new MarsRover(pos.getX(), pos.getY(),MarsRover.EAST);
 		Collection<Character> collection=new ArrayList<Character>();
@@ -187,6 +197,15 @@ class MarsRoverTest {
 		catch (RuntimeException ex){
 			assertEquals(MarsRover.UNKNOWN_COMMAND, ex.getMessage());
 		}
+		assertEquals(rover.getPosition(), new Point(2, 0));
+	}
+	
+	@Test
+	void testWhenInitializeWithLowcaseParameterShouldBePositionatedCorrectly() {
+		Point pos = new Point (0,0);		
+		MarsRover rover = new MarsRover(pos.getX(), pos.getY(),'e');
+		assertEquals(rover.getPosition(), pos);		
+		rover.move("ff");
 		assertEquals(rover.getPosition(), new Point(2, 0));
 	}
 }
